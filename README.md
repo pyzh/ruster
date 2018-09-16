@@ -52,6 +52,6 @@ Ruster is community project for community, It's need money for Cloud server to s
 
 ## License
 
-[GPL-3](https://github.com/rustlang-cn/ruster/blob/master/LICENSE)
+License is [here](https://github.com/rustlang-cn/ruster/blob/master/LICENSE)
 
 Copyright (c) 2018-present, Xiangfei Wang
