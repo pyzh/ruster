@@ -147,7 +147,7 @@ export default {
                   mode: 'cors'
               }).then(response => response.json())
               .then(json => {
-                  json.ruster_info[0] = 90 + json.ruster_info[0]
+                  json.ruster_info[0] = json.ruster_info[0]
                    this.ruster_info = json.ruster_info
               })
               .catch((e) => {
