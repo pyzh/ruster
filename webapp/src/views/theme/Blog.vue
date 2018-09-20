@@ -11,7 +11,8 @@
                             <span id="right"> 
                             <span id="info" class="first"><a :href="'/a/home/' + theme_category_name">博客</a></span> • 
                             <span id="info"><a :href="'/a/user/' + theme_user.id">{{ theme_user.username }}</a></span> •   
-                            <span id="info">{{ theme_rtime }}</span>  
+                            <span id="info">{{ theme_rtime }}</span> • 
+                            <span id="info"><a :href="'/a/'+ theme_category_name + '/edit/' + theme.id">编辑</a></span> 
                             </span>
                     </div>
                 </div>
@@ -382,7 +383,7 @@ export default {
     }
     #theblog #mei #title #save, #theblog #mei #title #saved {
         font-size: 0.8rem;
-        margin-left: 0.5rem;
+        margin-left: 0.2rem;
         padding: 0.8vh 0.9vw 0.3vh 0.7vw;
     }
     #theblog #mei #title #save {
@@ -398,7 +399,7 @@ export default {
     #theblog #mei #title #right {
         float: right;
         font-size: 0.85rem;
-        margin-right: 0.5rem;
+        margin-right: 0.2rem;
     }
 }
 @media only screen and (min-width: 600px) and (max-width: 850px) {
