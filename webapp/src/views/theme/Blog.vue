@@ -11,8 +11,8 @@
                             <span id="right"> 
                             <span id="info" class="first"><a :href="'/a/home/' + theme_category_name">博客</a></span> • 
                             <span id="info"><a :href="'/a/user/' + theme_user.id">{{ theme_user.username }}</a></span> •   
-                            <span id="info">{{ theme_rtime }}</span> • 
-                            <span id="info"><a :href="'/a/'+ theme_category_name + '/edit/' + theme.id">编辑</a></span> 
+                            <span id="info">{{ theme_rtime }}</span>
+                            <span v-if="signin_user.username == theme_user.username" id="info"><a :href="'/a/'+ theme_category_name + '/edit/' + theme.id">&nbsp;• 编辑</a></span> 
                             </span>
                     </div>
                 </div>
