@@ -69,8 +69,7 @@ export default {
                         localStorage.setItem('token',json.token);
                         localStorage.setItem('signin_user',JSON.stringify(json.signin_user));
                         window.location.reload ( true );
-                        // setTimeOut("functionName()",2000);
-                        this.$router.push('/');
+                        this.$router.push('/')
                     }else{
                         alert(json.message)
                     }

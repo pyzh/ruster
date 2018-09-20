@@ -19,6 +19,7 @@ pub fn theme_page_list((theme_page_list, state): (Json<ThemePageList>, State<App
 
 pub fn theme_new((theme_new, state): (Json<ThemeNew>, State<AppState>)) -> FutureResponse<HttpResponse> {
     state.db.send(ThemeNew{
+        theme_id: theme_new.theme_id,
         user_id: theme_new.user_id,
         category_name: theme_new.category_name.clone(),
         title: theme_new.title.clone(),

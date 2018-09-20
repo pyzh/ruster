@@ -158,23 +158,32 @@ impl Handler<ThemeNew> for ConnDsl {
         use utils::schema::themes::dsl::*;
         use utils::schema::categorys;
         let conn = &self.0.get().map_err(error::ErrorInternalServerError)?;
-        let category_one =  categorys::table.filter(categorys::category_name_cn.eq(theme_new.category_name)).load::<Category>(conn).map_err(error::ErrorInternalServerError)?.pop();
-        let cid: i32 ;
-        match category_one {
-            Some(one) => { cid = one.id;},
-            None => { cid = 0;},
-        }    
-        let new_theme = NewTheme {
-            user_id: theme_new.user_id,
-            category_id: cid,
-            title: &theme_new.title,
-            content: &theme_new.content,
-            created_at: Utc::now().naive_utc(),
-        };
-        diesel::insert_into(themes).values(&new_theme).execute(conn).map_err(error::ErrorInternalServerError)?;
+        if theme_new.theme_id == 0 {
+            let category_one =  categorys::table.filter(categorys::category_name_cn.eq(theme_new.category_name)).load::<Category>(conn).map_err(error::ErrorInternalServerError)?.pop();
+            let cid: i32 ;
+            match category_one {
+                Some(one) => { cid = one.id;},
+                None => { cid = 0;},
+            } 
+            let new_theme = NewTheme {
+                user_id: theme_new.user_id,
+                category_id: cid,
+                title: &theme_new.title,
+                content: &theme_new.content,
+                created_at: Utc::now().naive_utc(),
+            };
+            diesel::insert_into(themes).values(&new_theme).execute(conn).map_err(error::ErrorInternalServerError)?;
+        }else{
+            diesel::update(themes)
+                .filter(id.eq(theme_new.theme_id))
+                .set((
+                    title.eq(theme_new.title),
+                    content.eq(theme_new.content),
+                )).execute(conn).map_err(error::ErrorInternalServerError)?;
+        }
         Ok(Msgs { 
                 status: 200,
-                message : "Theme Post Successful.".to_string(),
+                message : "Successful.".to_string(),
         })        
     }
 }

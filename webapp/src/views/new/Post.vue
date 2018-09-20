@@ -111,6 +111,7 @@ export default {
     },
     methods: {
         post() {
+            let theme_id = Number.parseInt(0)
             let category_name = this.CategoryName
             let title = this.Title
             let content = this.Content
@@ -126,6 +127,7 @@ export default {
                 return
             }else{
                 let data = { 
+                    theme_id: theme_id,
                     user_id: user_id,
                     category_name: category_name,
                     title: title,
@@ -139,13 +141,14 @@ export default {
                     method: 'POST',
                 }).then(response => response.json())
                 .then(json => {
-                        // window.location.reload ( true )
-                        this.$router.push('/')
+                    return
+                        
                 })
                 .catch((e) => {
                     console.log(e)
                 })
             }
+            this.$router.push('/')
         }
     }
 }

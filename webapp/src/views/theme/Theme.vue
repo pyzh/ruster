@@ -9,7 +9,7 @@
                             <span id="info"><a :href="'/a/home/' + theme_category_name">{{ theme_category_name_cn }}</a></span> • 
                             <span id="info"><a :href="'/a/user/' + theme_user.id">{{ theme_user.username }}</a></span> •   
                             <span id="info">{{ theme_rtime }}</span> • 
-                            <span id="info"><a :href="'/a/'+ theme.category_name + '/edit/' + theme.id">编辑</a></span>  
+                            <span id="info"><a :href="'/a/'+ theme_category_name + '/edit/' + theme.id">编辑</a></span>  
                         </div>
                         <div id="content" v-html="theme.content" v-highlight> </div>
                     </div>

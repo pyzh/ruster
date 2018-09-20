@@ -36,9 +36,6 @@ export default {
     },
     data () {
         return {
-            category_names: '',
-            category_names_admin: '',
-            CategoryName: '',
             Title: '',
             Content: '',
             set:{
@@ -90,15 +87,12 @@ export default {
         post() {
             if (localStorage.getItem('signin_user')){
                 this.signin_user = JSON.parse(localStorage.getItem('signin_user'))
-            
-                let category_name = this.CategoryName
+                let theme_id = Number.parseInt(this.$route.params.id)
+                let category_name = this.$route.params.category
                 let title = this.Title
                 let content = this.Content
                 let user_id = JSON.parse(localStorage.getItem('signin_user')).id
-                if(category_name == ''){
-                    alert("主题分类不能为空, 请选择一个分类")
-                    return
-                }else if(title == ''){
+                if(title == ''){
                     alert("标题不能为空")
                     return
                 }else if(content == ''){
@@ -106,6 +100,7 @@ export default {
                     return
                 }else{
                     let data = { 
+                        theme_id: theme_id,
                         user_id: user_id,
                         category_name: category_name,
                         title: title,
@@ -119,13 +114,13 @@ export default {
                         method: 'POST',
                     }).then(response => response.json())
                     .then(json => {
-                            // window.location.reload ( true )
-                            this.$router.push('/')
+                        return
                     })
                     .catch((e) => {
                         console.log(e)
                     })
                 }
+                this.$router.push('/')
             }else{
                 alert("非法用户, 请先登陆再操作")
                 return

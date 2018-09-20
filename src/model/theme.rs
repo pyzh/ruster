@@ -61,6 +61,7 @@ pub struct NewSave {
 
 #[derive(Deserialize,Serialize, Debug,Clone)]
 pub struct ThemeNew {
+    pub theme_id: i32,
     pub user_id: i32,
     pub category_name: String,
     pub title: String,
