@@ -243,7 +243,6 @@ export default {
     background-color: #ffffff;
 }
 #theblog #center #content {
-    padding: 0.5rem;
     word-break: break-all;
     word-wrap: break-word;
 }
@@ -252,6 +251,9 @@ export default {
 }
 #theblog #center #comment, #theblog #center #reply {
     border-top: 1px solid fuchsia;
+}
+#theblog #center #theme #content {
+    padding: 0.5rem;
 }
 #theblog hr {
     height: 11px;
@@ -265,11 +267,12 @@ export default {
     border-bottom: 1px solid rgb(223, 223, 223);
 }
 #theblog #center #comment #detail {
+    padding: 0.3rem 0.6rem;
     border-bottom: 1px solid rgb(223, 223, 223);
 }
-#theblog #center #comment #detail #infos{
-    margin: 10px;
-    margin-bottom: 10px;
+#theblog #center #comment #content {
+    line-height: 1.3rem;
+    font-size: 0.9rem;
 }
 #theblog #center #comment #detail #info{
     display: inline-block;

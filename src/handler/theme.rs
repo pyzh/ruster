@@ -101,6 +101,7 @@ impl Handler<ThemeId> for ConnDsl {
         let mut theme_and_comments = ThemeAndCommentsMsgs::new();
         match the_theme {
             Some(mut themeid) => {
+                theme_and_comments.theme_raw_content = themeid.content.to_string();
                 themeid.content = markdown2html(&themeid.content);
                 theme_and_comments.theme = themeid.clone();
                 let mut theme_comment = comments::table.filter(&comments::theme_id.eq(&themeid.id)).load::<Comment>(conn).map_err(error::ErrorInternalServerError)?;
@@ -145,6 +146,7 @@ impl Handler<ThemeId> for ConnDsl {
             theme_category_name_cn: theme_and_comments.theme_category_name_cn,
             theme_rtime: theme_and_comments.theme_rtime,
             theme_comments: theme_and_comments.theme_comments,
+            theme_raw_content: theme_and_comments.theme_raw_content,
         })
     }
 }

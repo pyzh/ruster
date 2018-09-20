@@ -8,7 +8,8 @@
                             <h2> {{ theme.title }} </h2> 
                             <span id="info"><a :href="'/a/home/' + theme_category_name">{{ theme_category_name_cn }}</a></span> • 
                             <span id="info"><a :href="'/a/user/' + theme_user.id">{{ theme_user.username }}</a></span> •   
-                            <span id="info">{{ theme_rtime }}</span>  
+                            <span id="info">{{ theme_rtime }}</span> • 
+                            <span id="info"><a :href="'/a/'+ theme.category_name + '/edit/' + theme.id">编辑</a></span>  
                         </div>
                         <div id="content" v-html="theme.content" v-highlight> </div>
                     </div>
@@ -167,7 +168,6 @@ export default {
     background-color: #ffffff;
 }
 #main #center #content {
-    padding: 0.5rem;
     word-break: break-all;
     word-wrap: break-word;
 }
@@ -182,12 +182,15 @@ export default {
     padding: 10px;
     border-bottom: 1px solid rgb(223, 223, 223);
 }
-#main #center #theme > #title h2 { 
+#main #center #theme #title h2 { 
     padding-bottom: 0.3rem;
 }
-#main #center #theme > #title #info {
+#main #center #theme #title #info {
     display: inline-block;
     font-size: 14px;
+}
+#main #center #theme #content {
+    padding: 0.5rem;
 }
 #main hr {
     height: 11px;
@@ -201,11 +204,12 @@ export default {
     border-bottom: 1px solid rgb(223, 223, 223);
 }
 #main #center #comment #detail {
+    padding: 0.3rem 0.6rem;
     border-bottom: 1px solid rgb(223, 223, 223);
 }
-#main #center #comment #detail #infos{
-    margin: 10px;
-    margin-bottom: 10px;
+#main #center #comment #content {
+    line-height: 1.3rem;
+    font-size: 0.9rem;
 }
 #main #center #comment #detail #info{
     display: inline-block;

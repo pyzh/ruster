@@ -51,6 +51,7 @@ pub struct ThemeAndCommentsMsgs {
     pub theme_category_name_cn: String,
     pub theme_rtime: String,
     pub theme_comments: Vec<CommentReturn>,
+    pub theme_raw_content: String,
 }
 
 #[derive(Deserialize,Serialize, Debug)]
@@ -110,6 +111,7 @@ impl ThemeAndCommentsMsgs {
                 theme_category_name_cn: "".to_string(),
                 theme_rtime: "".to_string(),
                 theme_comments: vec![],
+                theme_raw_content: "".to_string(),
             }
     }
 }

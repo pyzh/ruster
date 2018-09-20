@@ -21,6 +21,7 @@ function main(router) {
         { path: '/a/blog/theme/:id', name: 'blog', component: (resolve) => require(['../views/theme/Blog'], resolve) },
         { path: '/a/best/theme/:id', name: 'best', component: (resolve) => require(['../views/theme/Blog'], resolve) },
         { path: '/a/:category/theme/:id', name: 'theme', component: (resolve) => require(['../views/theme/Theme'], resolve) },
+        { path: '/a/:category/edit/:id', name: 'Edit', component: (resolve) => require(['../views/theme/Edit'], resolve) },
         { path: '/a/post', name: 'post', component: (resolve) => require(['../views/new/Post'], resolve) },
         { path: '/a/create', name: 'create', component: (resolve) => require(['../views/new/Create'], resolve) },
         { path: '/a/signin', name: 'signin', component: (resolve) => require(['../views/user/Signin'], resolve) },
