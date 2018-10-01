@@ -204,12 +204,16 @@ impl Handler<UserUpdate> for ConnDsl {
     fn handle(&mut self, user_update: UserUpdate, _: &mut Self::Context) -> Self::Result {
         use utils::schema::users::dsl::*;
         let conn = &self.0.get().map_err(error::ErrorInternalServerError)?;
+        let hash_password = match hash(&user_update.newpassword, DEFAULT_COST) {
+                Ok(h) => h,
+                Err(_) => panic!()
+        };
         diesel::update(users)
             .filter(&id.eq(&user_update.user_id))
             .set((
                 username.eq(user_update.newname),
                 email.eq(user_update.newmail),
-                password.eq(user_update.newpassword),
+                password.eq(hash_password),
             )).execute(conn).map_err(error::ErrorInternalServerError)?;
         Ok(Msgs{
                 status: 200,

@@ -56,9 +56,9 @@ pub fn user_id((user_id, state): (Json<UserId>, State<AppState>)) -> FutureRespo
 }
 
 pub fn user_delete(req: HttpRequest<AppState>) -> FutureResponse<HttpResponse> {
-    let header_token = req.headers().get("Authorization").unwrap();
-    let token = header_token.to_str().unwrap();
-    let user_id = token[7..].to_string();
+    let header = req.headers().get("Authorization").unwrap();
+    let header_token = header.to_str().unwrap();
+    let token = header_token[7..].to_string();
     let key = "secret";
     let validation = Validation {
         validate_exp: false,
