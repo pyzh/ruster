@@ -2,7 +2,7 @@ use diesel::{self,QueryDsl,ExpressionMethods,RunQueryDsl};
 use actix_web::{actix::Handler,error,Error};
 use chrono::Utc;
 use bcrypt::{DEFAULT_COST, hash, verify};
-use utils::token;
+use jwt::{encode, Header, Algorithm};
 
 use model::user::{User, NewUser, SignupUser, SigninUser, UserInfo, UserUpdate, UserId,
                   UserDelete, UserThemes,UserComments,UserSaves,UserMessages,UserMessagesReadall};
@@ -11,6 +11,7 @@ use model::response::{Msgs, SigninMsgs, UserIdMsgs,UserInfoMsgs, UserThemesMsgs,
 use router::ConnDsl;
 use model::message::Message;
 use model::theme::{Theme, Comment,Save};
+use share::common::Claims;
 use model::response::MyError;
 
 impl Handler<SignupUser> for ConnDsl {
@@ -69,8 +70,14 @@ impl Handler<SigninUser> for ConnDsl {
                 match verify(&signin_user.password, &login_user.password) {
                     Ok(valid) => {
                         if signin_user.code == 0 {
-                            let user_id = login_user.id.to_string();
-                            let token = token::generate_token(user_id).unwrap();
+                            let key = "secret";
+                            let claims = Claims {
+                                user_id: login_user.id.to_string(),
+                            };
+                            let token = match encode(&Header::default(), &claims, key.as_ref()) {
+                                Ok(t) => t,
+                                Err(_) => panic!() // in practice you would return the error
+                            };
                             let the_user = User {
                                 id: login_user.id,
                                 email: login_user.email.clone(),

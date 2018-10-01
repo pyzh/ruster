@@ -11,7 +11,8 @@ use model::category::Category;
 use model::message::{Message, NewMessage};
 use router::ConnDsl;
 use model::user::User;
-use utils::{time, markdown2html, order_vec, state::PAGE_SIZE};
+use utils::{time, markdown2html, order_vec};
+use share::common::PAGE_SIZE;
 
 impl Handler<ThemePageList> for ConnDsl {
     type Result = Result<ThemePageListMsgs, Error>;

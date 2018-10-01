@@ -1,18 +1,24 @@
 use actix_web::{HttpMessage, HttpRequest, HttpResponse, State, Json, AsyncResponder, FutureResponse};
 use futures::future::Future;
-use utils::token::verify_token;
+use jwt::{decode, Header, Algorithm, Validation};
 
+use share::common::Claims;
 use model::user::{UserInfo,UserId, UserDelete, UserUpdate, UserThemes,UserComments,UserSaves,UserMessages,UserMessagesReadall};
 use router::AppState;
 
 
 pub fn user_info(req: HttpRequest<AppState>) -> FutureResponse<HttpResponse> {
-    let header_token = req.headers().get("Authorization").unwrap();
-    let token = header_token.to_str().unwrap();
-    let user_id = token[7..].to_string();
-    match verify_token(&user_id) {
-        Ok(user_id) => {
-            req.state().db.send(UserInfo{user_id})
+    let header = req.headers().get("Authorization").unwrap();
+    let header_token = header.to_str().unwrap();
+    let token = header_token[7..].to_string();
+    let key = "secret";
+    let validation = Validation {
+        validate_exp: false,
+        ..Default::default()
+    };
+    match decode::<Claims>(&token, key.as_ref(), &validation) {
+        Ok(token_data) =>{
+            req.state().db.send(UserInfo{user_id: token_data.claims.user_id.to_string()})
                 .from_err()
                 .and_then(|res| {
                     match res {
@@ -32,7 +38,7 @@ pub fn user_info(req: HttpRequest<AppState>) -> FutureResponse<HttpResponse> {
                         Err(_) => Ok(HttpResponse::InternalServerError().into())
                     }
                 }).responder()
-        },
+        }
     }
 }
 
@@ -53,9 +59,14 @@ pub fn user_delete(req: HttpRequest<AppState>) -> FutureResponse<HttpResponse> {
     let header_token = req.headers().get("Authorization").unwrap();
     let token = header_token.to_str().unwrap();
     let user_id = token[7..].to_string();
-    match verify_token(&user_id) {
-        Ok(user_id) => {
-            req.state().db.send(UserDelete{user_id})
+    let key = "secret";
+    let validation = Validation {
+        validate_exp: false,
+        ..Default::default()
+    };
+    match decode::<Claims>(&token, key.as_ref(), &validation) {
+        Ok(token_data) =>{
+            req.state().db.send(UserDelete{user_id: token_data.claims.user_id.to_string()})
                 .from_err()
                 .and_then(|res| {
                     match res {
@@ -75,7 +86,7 @@ pub fn user_delete(req: HttpRequest<AppState>) -> FutureResponse<HttpResponse> {
                         Err(_) => Ok(HttpResponse::InternalServerError().into())
                     }
                 }).responder()
-        },
+        }
     }
 }
 

@@ -7,7 +7,8 @@ use model::response::{CategorysMsgs, Msgs, ThemePageListMsgs};
 use router::ConnDsl;
 use model::theme::{Theme, Save, ThemeListResult};
 use model::user::User;
-use utils::{time, state::PAGE_SIZE,order_vec};
+use utils::{time, order_vec};
+use share::common::PAGE_SIZE;
 use model::category::{Category, Categorys, NewCategory, CategoryNew, CategoryThemePageList};
 
 

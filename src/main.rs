@@ -18,12 +18,14 @@ extern crate data_encoding;
 extern crate postgres;
 extern crate timeago;
 extern crate pulldown_cmark;
+extern crate jsonwebtoken as jwt;
 
 use actix_web::{server,actix::System};
 
 mod api;
 mod handler;
 mod model;
+mod share;
 mod utils;
 mod router;
 

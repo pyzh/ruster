@@ -52,13 +52,13 @@ main #myBtn {
 }
 @media only screen and (min-width: 600px) and (max-width: 850px) {
     main #myBtn {
-        bottom: 2rem; /* Place the button at the bottom of the page */
+        bottom: 1rem; /* Place the button at the bottom of the page */
         right: 11%; /* Place the button 30px from the right */
     }
 }
 @media only screen and (min-width: 850px) {
     main #myBtn {
-        bottom: 2rem; /* Place the button at the bottom of the page */
+        bottom: 1rem; /* Place the button at the bottom of the page */
         right: 18%; /* Place the button 30px from the right */
     }
 }

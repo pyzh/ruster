@@ -8,7 +8,7 @@
                         <span style="font-size: 1.2rem;">为中心的全栈技术社区！</span>
                     </div><br>
                     <h3>支持Ruster</h3>
-                    <p>Ruster 是一个社区项目，<a href="https://github.com/OUISRC/kary" target="_blank">源码</a>&nbsp;每月需要费用花在云服务器托管，请帮助这个项目给予捐助，谢谢！
+                    <p>Ruster 是一个社区项目，<a href="https://github.com/rustlang-cn/ruster" target="_blank">源码</a>&nbsp;每月需要费用花在云服务器托管，请帮助这个项目给予捐助，谢谢！
                     联系krircc@aliyun.com.</p>
                 </div><br>
                 <div style="box-shadow: 0 0 3px rgba(0,0,0,0.1), 0 -1px 1px rgba(0,0,0,0.1);width:11.4rem;text-align:center;">

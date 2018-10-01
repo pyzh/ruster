@@ -81,8 +81,8 @@ export default {
     }
   },
   mounted: function() {
-      let data = { user_id : Number.parseInt(this.$route.params.id)}
-      fetch(URLprefix + 'api/user/id/themes',{
+        let data = { user_id : Number.parseInt(this.$route.params.id)}
+        fetch(URLprefix + 'api/user/id/themes',{
                   body: JSON.stringify(data), 
                   headers: {
                     'content-type': 'application/json'
@@ -97,7 +97,7 @@ export default {
                 console.log(e)
               })
 
-      if (localStorage.getItem('token')){
+        if (localStorage.getItem('token')){
             let signin_user = JSON.parse(localStorage.getItem('signin_user'))
             this.signin_user = signin_user
             if (signin_user.id == this.$route.params.id) {
@@ -114,9 +114,9 @@ export default {
                     console.log(e)
                 }) 
             }
-      }
+        }
 
-      fetch(URLprefix + 'api/user_id',{
+        fetch(URLprefix + 'api/user_id',{
                     body: JSON.stringify(data), 
                     headers: {
                         'content-type': 'application/json'
@@ -136,31 +136,34 @@ export default {
         this.userupdate = true
     },
     submitnow() {
-        var newname = current_user.username
-        var newmail = this.Newmail
-        var newpassword = this.Newpassword
-        var confirm_newpassword = this.ConfirmNewpassword
-        let data = { 
-            user_id: current_user.id,
-            newname: newname,
-            newmail: newmail,
-            newpassword: newpassword,
-            confirm_newpassword: confirm_newpassword
-        }
-              fetch(URLprefix + 'api/user_update', {
+        if (localStorage.getItem('token')){
+            let signin_user = JSON.parse(localStorage.getItem('signin_user'))
+            var newname = signin_user.username
+            var newmail = this.Newmail
+            var newpassword = this.Newpassword
+            var confirm_newpassword = this.ConfirmNewpassword
+            let data = { 
+                user_id: signin_user.id,
+                newname: newname,
+                newmail: newmail,
+                newpassword: newpassword,
+                confirm_newpassword: confirm_newpassword
+            }
+            fetch(URLprefix + 'api/user_update', {
                   body: JSON.stringify(data), 
                   headers: {
                     'content-type': 'application/json'
                   },
                   method: 'POST',
-              }).then(response => response.json())
-              .then(json => {
+            }).then(response => response.json())
+            .then(json => {
                     this.userupdate = false
                     window.location.reload ( true )
-              })
-              .catch((e) => {
+            })
+            .catch((e) => {
                 console.log(e)
-              })
+            })
+        }
     },
     deleteme() {
         fetch(URLprefix + 'api/user_delete',{
