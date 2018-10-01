@@ -46,6 +46,10 @@ $ cargo run --release
 
 then open broswer 'http://localhost:8000/'
 
+## Screen
+
+<img alt="Home" width="900" src="https://raw.githubusercontent.com/rustlang-cn/ruster/master/rust-cn.png">
+
 ## Support Ruster/支持Ruster
 
 Ruster is community project for community, It's need money for Cloud server to support the [Ruster](http://ruster.xyz/). If you want let the project have a bright future and can help the project, please gave your hand thanks. at this moment you can contact [krircc](https://github.com/krircc) or krircc@aliyun.com
