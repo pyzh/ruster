@@ -13,8 +13,6 @@ extern crate chrono;
 extern crate bcrypt;
 extern crate regex;
 extern crate http;
-extern crate ring;
-extern crate data_encoding;
 extern crate postgres;
 extern crate timeago;
 extern crate pulldown_cmark;
