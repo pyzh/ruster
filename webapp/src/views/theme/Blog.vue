@@ -310,12 +310,11 @@ export default {
     width: 100%;
 }
 #theblog #center ul li {
-    margin: 1vh 0;
-    padding: 0 0.5vw;
-    border-left: 2px solid var(--purple);
+    margin: auto 1.5rem;
+    list-style-type:square;
 }
 #theblog #center ol li {
-    margin: 1vh 1vw;
+    margin: auto 1.6rem;
     list-style-type:decimal;
 }
 #theblog #center table {
