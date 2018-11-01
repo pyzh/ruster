@@ -62,6 +62,7 @@ export default {
                 header: true, // 标题
                 quote: true, // 引用
                 ul: true, // 无序列表
+                ol: true, // 有序列表
                 link: true, // 链接
                 code: true, // code
                 table: true, // 表格
@@ -74,8 +75,7 @@ export default {
                 underline: false, // 下划线
                 strikethrough: false, // 中划线
                 mark: false, // 标记
-                ol: false, // 有序列表
-                 alignleft: false, // 左对齐
+                alignleft: false, // 左对齐
                 aligncenter: false, // 居中
                 alignright: false, // 右对齐
                 superscript: false, // 上角标
