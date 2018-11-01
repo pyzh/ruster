@@ -114,13 +114,13 @@ export default {
                         method: 'POST',
                     }).then(response => response.json())
                     .then(json => {
-                        return
+                        this.$router.push('/')
                     })
                     .catch((e) => {
                         console.log(e)
                     })
+                    this.$router.push('/')
                 }
-                this.$router.push('/')
             }else{
                 alert("非法用户, 请先登陆再操作")
                 return
